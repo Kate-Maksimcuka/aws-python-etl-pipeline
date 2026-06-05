@@ -69,7 +69,9 @@ Outputs:
 
 Outputs:
 
-- `outputs/charts/exchange_rates_over_time.png`
+- `outputs/charts/exchange_rates_over_time_excluding_jpy.png`
+- `outputs/charts/gbp_to_jpy_exchange_rate.png`
+- `outputs/charts/indexed_exchange_rate_change.png`
 - `outputs/charts/average_exchange_rate_by_currency.png`
 - `outputs/charts/exchange_rate_range_by_currency.png`
 
@@ -79,9 +81,21 @@ Outputs:
 
 ## Charts
 
-### GBP Exchange Rates Over Time
+### GBP Exchange Rates Over Time Excluding JPY
 
-![GBP exchange rates over time](outputs/charts/exchange_rates_over_time.png)
+JPY has much larger exchange-rate values than the other selected currencies, so it is shown separately to keep the chart readable.
+
+![GBP exchange rates over time excluding JPY](outputs/charts/exchange_rates_over_time_excluding_jpy.png)
+
+### GBP to JPY Exchange Rate
+
+![GBP to JPY exchange rate](outputs/charts/gbp_to_jpy_exchange_rate.png)
+
+### Indexed Exchange Rate Change
+
+This chart sets each currency to 100 on the first date. This makes it easier to compare relative movement across currencies with very different scales.
+
+![Indexed exchange rate change](outputs/charts/indexed_exchange_rate_change.png)
 
 ### Average Exchange Rate by Currency
 

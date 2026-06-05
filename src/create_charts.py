@@ -16,19 +16,54 @@ CHART_DIR = Path("outputs/charts")
 
 
 def save_line_chart(clean_df: pd.DataFrame) -> None:
-    """Save a line chart showing exchange-rate movement over time."""
+    """Save line charts showing exchange-rate movement over time."""
+    major_currency_df = clean_df[clean_df["target_currency"] != "JPY"]
     plt.figure(figsize=(11, 6))
-    for currency in sorted(clean_df["target_currency"].unique()):
-        currency_df = clean_df[clean_df["target_currency"] == currency]
+    for currency in sorted(major_currency_df["target_currency"].unique()):
+        currency_df = major_currency_df[major_currency_df["target_currency"] == currency]
         plt.plot(currency_df["date"], currency_df["exchange_rate"], label=currency)
 
-    plt.title("GBP Exchange Rates Over Time")
+    plt.title("GBP Exchange Rates Over Time Excluding JPY")
     plt.xlabel("Date")
     plt.ylabel("Exchange rate from GBP")
     plt.legend(title="Currency")
     plt.grid(alpha=0.3)
     plt.tight_layout()
-    plt.savefig(CHART_DIR / "exchange_rates_over_time.png", dpi=160)
+    plt.savefig(CHART_DIR / "exchange_rates_over_time_excluding_jpy.png", dpi=160)
+    plt.close()
+
+    jpy_df = clean_df[clean_df["target_currency"] == "JPY"]
+    plt.figure(figsize=(11, 6))
+    plt.plot(jpy_df["date"], jpy_df["exchange_rate"], color="#8c564b", label="JPY")
+    plt.title("GBP to JPY Exchange Rate Over Time")
+    plt.xlabel("Date")
+    plt.ylabel("Exchange rate from GBP")
+    plt.legend(title="Currency")
+    plt.grid(alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(CHART_DIR / "gbp_to_jpy_exchange_rate.png", dpi=160)
+    plt.close()
+
+
+def save_indexed_line_chart(clean_df: pd.DataFrame) -> None:
+    """Save an indexed chart so currencies with different scales can be compared."""
+    indexed_df = clean_df.copy()
+    indexed_df["indexed_rate"] = indexed_df.groupby("target_currency")[
+        "exchange_rate"
+    ].transform(lambda values: values / values.iloc[0] * 100)
+
+    plt.figure(figsize=(11, 6))
+    for currency in sorted(indexed_df["target_currency"].unique()):
+        currency_df = indexed_df[indexed_df["target_currency"] == currency]
+        plt.plot(currency_df["date"], currency_df["indexed_rate"], label=currency)
+
+    plt.title("Indexed Exchange Rate Change Over Time")
+    plt.xlabel("Date")
+    plt.ylabel("Index, first date = 100")
+    plt.legend(title="Currency")
+    plt.grid(alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(CHART_DIR / "indexed_exchange_rate_change.png", dpi=160)
     plt.close()
 
 
@@ -70,6 +105,7 @@ def main() -> None:
     summary_df = pd.read_csv(SUMMARY_INPUT_PATH)
 
     save_line_chart(clean_df)
+    save_indexed_line_chart(clean_df)
     save_average_rate_chart(summary_df)
     save_volatility_chart(clean_df)
     print(f"Saved charts to {CHART_DIR}")
