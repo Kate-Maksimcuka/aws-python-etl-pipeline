@@ -105,7 +105,15 @@ This chart sets each currency to 100 on the first date. This makes it easier to 
 
 ### Exchange Rate Percentage Range by Currency
 
-This chart compares the percentage range for each currency instead of the raw exchange-rate range, which makes the comparison fairer across different scales.
+The currencies in this dataset have very different exchange-rate scales. For example, GBP to JPY is around 210–216, while GBP to USD is around 1.32–1.36. If I compare the raw difference between minimum and maximum values, JPY appears much larger mainly because it is measured on a larger numerical scale.
+
+To make the comparison fairer, this chart uses the percentage range:
+
+```text
+(maximum exchange rate - minimum exchange rate) / minimum exchange rate × 100
+```
+
+This shows relative movement within each currency over the period, rather than simply showing which currency has the largest raw numbers.
 
 ![Exchange rate percentage range by currency](outputs/charts/exchange_rate_percentage_range_by_currency.png)
 
