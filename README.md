@@ -19,6 +19,17 @@ The local version saves:
 
 There is also an optional AWS script for uploading processed files to S3 once AWS credentials are configured.
 
+## Key Skills Demonstrated
+
+- Built a basic ETL workflow using Python
+- Extracted data from a public API
+- Transformed nested JSON into clean CSV tables
+- Created summary metrics with pandas
+- Designed charts while handling scale differences between currencies
+- Uploaded processed data to Amazon S3
+- Queried clean data with Amazon Athena
+- Documented the workflow clearly in GitHub
+
 ## Tools Used
 
 - Python
