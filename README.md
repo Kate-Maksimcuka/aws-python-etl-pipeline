@@ -69,11 +69,11 @@ Outputs:
 
 Outputs:
 
+- `outputs/charts/exchange_rates_dual_axis_with_jpy.png`
 - `outputs/charts/exchange_rates_over_time_excluding_jpy.png`
 - `outputs/charts/gbp_to_jpy_exchange_rate.png`
 - `outputs/charts/indexed_exchange_rate_change.png`
-- `outputs/charts/average_exchange_rate_by_currency.png`
-- `outputs/charts/exchange_rate_range_by_currency.png`
+- `outputs/charts/exchange_rate_percentage_range_by_currency.png`
 
 ### 4. Optional AWS Load
 
@@ -81,9 +81,15 @@ Outputs:
 
 ## Charts
 
+### GBP Exchange Rates With JPY on a Separate Axis
+
+JPY has much larger exchange-rate values than the other selected currencies. This chart keeps all currencies in one view, but uses a separate right-hand axis for JPY so the other lines remain readable.
+
+![GBP exchange rates with JPY on a separate axis](outputs/charts/exchange_rates_dual_axis_with_jpy.png)
+
 ### GBP Exchange Rates Over Time Excluding JPY
 
-JPY has much larger exchange-rate values than the other selected currencies, so it is shown separately to keep the chart readable.
+This version removes JPY completely so the movement of USD, EUR, CAD and AUD can be seen more clearly on one scale.
 
 ![GBP exchange rates over time excluding JPY](outputs/charts/exchange_rates_over_time_excluding_jpy.png)
 
@@ -97,13 +103,11 @@ This chart sets each currency to 100 on the first date. This makes it easier to 
 
 ![Indexed exchange rate change](outputs/charts/indexed_exchange_rate_change.png)
 
-### Average Exchange Rate by Currency
+### Exchange Rate Percentage Range by Currency
 
-![Average exchange rate by currency](outputs/charts/average_exchange_rate_by_currency.png)
+This chart compares the percentage range for each currency instead of the raw exchange-rate range, which makes the comparison fairer across different scales.
 
-### Exchange Rate Range by Currency
-
-![Exchange rate range by currency](outputs/charts/exchange_rate_range_by_currency.png)
+![Exchange rate percentage range by currency](outputs/charts/exchange_rate_percentage_range_by_currency.png)
 
 ## How to Run Locally
 
