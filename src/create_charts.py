@@ -15,36 +15,6 @@ SUMMARY_INPUT_PATH = Path("data/processed/exchange_rates_summary.csv")
 CHART_DIR = Path("outputs/charts")
 
 
-def save_line_chart(clean_df: pd.DataFrame) -> None:
-    """Save line charts showing exchange-rate movement over time."""
-    major_currency_df = clean_df[clean_df["target_currency"] != "JPY"]
-    plt.figure(figsize=(11, 6))
-    for currency in sorted(major_currency_df["target_currency"].unique()):
-        currency_df = major_currency_df[major_currency_df["target_currency"] == currency]
-        plt.plot(currency_df["date"], currency_df["exchange_rate"], label=currency)
-
-    plt.title("GBP Exchange Rates Over Time Excluding JPY")
-    plt.xlabel("Date")
-    plt.ylabel("Exchange rate from GBP")
-    plt.legend(title="Currency")
-    plt.grid(alpha=0.3)
-    plt.tight_layout()
-    plt.savefig(CHART_DIR / "exchange_rates_over_time_excluding_jpy.png", dpi=160)
-    plt.close()
-
-    jpy_df = clean_df[clean_df["target_currency"] == "JPY"]
-    plt.figure(figsize=(11, 6))
-    plt.plot(jpy_df["date"], jpy_df["exchange_rate"], color="#8c564b", label="JPY")
-    plt.title("GBP to JPY Exchange Rate Over Time")
-    plt.xlabel("Date")
-    plt.ylabel("Exchange rate from GBP")
-    plt.legend(title="Currency")
-    plt.grid(alpha=0.3)
-    plt.tight_layout()
-    plt.savefig(CHART_DIR / "gbp_to_jpy_exchange_rate.png", dpi=160)
-    plt.close()
-
-
 def save_dual_axis_chart(clean_df: pd.DataFrame) -> None:
     """Save one chart with JPY on a separate axis because it has a different scale."""
     major_currency_df = clean_df[clean_df["target_currency"] != "JPY"]
@@ -129,7 +99,6 @@ def main() -> None:
     clean_df = pd.read_csv(CLEAN_INPUT_PATH, parse_dates=["date"])
     summary_df = pd.read_csv(SUMMARY_INPUT_PATH)
 
-    save_line_chart(clean_df)
     save_dual_axis_chart(clean_df)
     save_indexed_line_chart(clean_df)
     save_percentage_range_chart(clean_df)

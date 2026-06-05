@@ -70,8 +70,6 @@ Outputs:
 Outputs:
 
 - `outputs/charts/exchange_rates_dual_axis_with_jpy.png`
-- `outputs/charts/exchange_rates_over_time_excluding_jpy.png`
-- `outputs/charts/gbp_to_jpy_exchange_rate.png`
 - `outputs/charts/indexed_exchange_rate_change.png`
 - `outputs/charts/exchange_rate_percentage_range_by_currency.png`
 
@@ -83,19 +81,15 @@ Outputs:
 
 ### GBP Exchange Rates With JPY on a Separate Axis
 
-JPY has much larger exchange-rate values than the other selected currencies. This chart keeps all currencies in one view, but uses a separate right-hand axis for JPY so the other lines remain readable.
+This chart shows all selected currencies in one view, but uses two y-axes because JPY is on a much larger numerical scale than the other currencies.
+
+The left-hand y-axis is used for USD, EUR, CAD and AUD. These exchange rates are all close enough in value to be compared on the same scale. The right-hand y-axis is used for JPY, because GBP to JPY is around 210–216 during this period, while the other currencies are mostly around 1–2.
+
+Using one shared y-axis would make the USD, EUR, CAD and AUD lines appear almost flat and difficult to read. Using a separate axis for JPY keeps the chart readable while still allowing all currencies to be shown together.
+
+The chart should be read as a trend comparison rather than a direct comparison of raw values across the two axes. For fairer comparison of relative movement, the indexed chart below is more useful.
 
 ![GBP exchange rates with JPY on a separate axis](outputs/charts/exchange_rates_dual_axis_with_jpy.png)
-
-### GBP Exchange Rates Over Time Excluding JPY
-
-This version removes JPY completely so the movement of USD, EUR, CAD and AUD can be seen more clearly on one scale.
-
-![GBP exchange rates over time excluding JPY](outputs/charts/exchange_rates_over_time_excluding_jpy.png)
-
-### GBP to JPY Exchange Rate
-
-![GBP to JPY exchange rate](outputs/charts/gbp_to_jpy_exchange_rate.png)
 
 ### Indexed Exchange Rate Change
 
