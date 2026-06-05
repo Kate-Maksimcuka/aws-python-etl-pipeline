@@ -99,7 +99,17 @@ This version removes JPY completely so the movement of USD, EUR, CAD and AUD can
 
 ### Indexed Exchange Rate Change
 
-This chart sets each currency to 100 on the first date. This makes it easier to compare relative movement across currencies with very different scales.
+The selected currencies have very different exchange-rate values, so plotting them on one raw scale can make smaller-valued currencies difficult to see. To compare their movement more fairly, this chart converts each currency into an index.
+
+Each currency starts at 100 on the first date in the dataset. Later values show how much that currency has moved relative to its own starting point.
+
+For example:
+
+- 100 means no change from the first date
+- 102 means the exchange rate is about 2% higher than on the first date
+- 98 means the exchange rate is about 2% lower than on the first date
+
+This makes it easier to compare trends across currencies, even when one currency, such as JPY, has much larger raw exchange-rate numbers than currencies like USD or EUR.
 
 ![Indexed exchange rate change](outputs/charts/indexed_exchange_rate_change.png)
 
