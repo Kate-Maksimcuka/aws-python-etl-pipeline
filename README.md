@@ -168,6 +168,22 @@ Then run:
 python src/upload_to_s3.py
 ```
 
+## AWS Extension Evidence
+
+To extend the local ETL pipeline into a basic cloud workflow, I uploaded the processed CSV outputs to Amazon S3 and queried the clean exchange-rate data using Amazon Athena.
+
+The processed files were uploaded to an S3 bucket under an `exchange-rates/` folder. For Athena, the clean dataset was also placed in a separate `exchange-rates-clean/` folder so the table reads only the row-level exchange-rate data and not the summary file.
+
+### S3 Processed Files
+
+![S3 processed files](outputs/screenshots/s3_uploaded_files.png)
+
+### Athena Query Result
+
+![Athena query result](outputs/screenshots/athena_query_results.png)
+
+This confirms that the cleaned CSV output can be stored in S3 and queried with SQL in Athena.
+
 ## Example Athena Query
 
 An example Athena query is included in:
